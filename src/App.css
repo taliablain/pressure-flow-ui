@@ -27,18 +27,29 @@ body {
   background-color: #fff;
   border-bottom: 2px solid #333;
   height: 80px;
+  position: relative;  /* needed for centering */
+}
+
+.header-center {
+  position: absolute;  /* absolutely position center group */
+  left: 50%;           /* move left edge to 50% */
+  top: 50%;            /* vertically center */
+  transform: translate(-50%, -50%); /* shift left and up by 50% of its own size to center perfectly */
+  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-image {
+  height: 50px;  /* keep your size */
+  width: auto;
+  margin-right: 0; /* remove previous right margin */
 }
 
 .header-left {
   display: flex;
   gap: 10px;
-}
-
-.header-center h1 {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  letter-spacing: 2px;
 }
 
 .header-right {
@@ -316,6 +327,21 @@ body {
   justify-content: center;
   min-width: 80px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.measurement-box-percentage {
+  background-color: white;
+  border: 1px solid #666;
+  border-radius: 4px;
+  padding: 8px 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  min-height: 35px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  margin-left: 150px;
 }
 
 .measurement-value {

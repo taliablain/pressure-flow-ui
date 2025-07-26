@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import smallLogo from './small-logo.jpeg';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -717,17 +718,23 @@ function App() {
   const products = ["PETROL", "DIESEL", "KEROSENE", "PARAFFIN"];
 
 return (
-  <div className="control-interface">
-    {/* Header */}
-    <div className="header">
-      <div className="header-left"></div>
-      <div className="header-center">
-        <h1>OIL SEPARATION REFINERY</h1>
-      </div>
-      <div className="header-right">
-        <div className="datetime">{formatDateTime(currentTime)}</div>
-      </div>
+ <div className="control-interface">
+  {/* Header */}
+  <div className="header">
+    <div className="header-left">
+      {/* You can remove the logo here or keep something else */}
     </div>
+
+    <div className="header-center">
+      <img src={smallLogo} alt="Logo" className="logo-image" />
+      <h1>OIL SEPARATION REFINERY</h1>
+      <img src={smallLogo} alt="Right Logo" className="logo-image" />
+    </div>
+
+    <div className="header-right">
+      <div className="datetime">{formatDateTime(currentTime)}</div>
+    </div>
+  </div>
 
     {/* Main Distillation Layout */}
     <div className="distillation-container">
@@ -774,6 +781,8 @@ return (
           </div>
           <div className="connection-line">
             <div className="arrow-down"></div>
+            <div className="measurement-box-percentage">
+              </div>
           </div>
           <div className="collection-trap">
             <div className="trap-label">PRODUCT BUFFER STORAGE TANK</div>
