@@ -219,6 +219,37 @@ body {
   justify-content: center;
 }
 
+/* Red line from cracker to paraffin */
+.cracker-to-paraffin-line {
+  position: absolute;
+  top: 90px; /* Same level as cracker horizontal line */
+  left: -70px; /* Start from left side of cracker */
+  width: 70px; /* Length to reach paraffin area */
+  height: 3.5px;
+  background-color: #d32f2f; /* Red color matching datetime */
+  z-index: 4;
+}
+
+.paraffin-to-kerosene-line {
+  position: absolute;
+  top: 143px; /* Same level as cracker horizontal line */
+  left: -66px; /* Start from left side of cracker */
+  width: 66px; /* Length to reach paraffin area */
+  height: 3.5px;
+  background-color: #d32f2f; /* Red color matching datetime */
+  z-index: 4;
+}
+
+.kerosene-to-diesel-line {
+  position: absolute;
+  top: 143px; /* Same level as cracker horizontal line */
+  left: -66px; /* Start from left side of cracker */
+  width: 66px; /* Length to reach paraffin area */
+  height: 3.5px;
+  background-color: #d32f2f; /* Red color matching datetime */
+  z-index: 4;
+}
+
 .pyrolysis-label {
   position: absolute;
   font-size: 14px;
