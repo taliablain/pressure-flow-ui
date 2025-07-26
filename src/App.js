@@ -47,16 +47,16 @@ function App() {
   const adjustPressuresForCollisions = (newPressures) => {
     const pressureValues = Object.values(newPressures);
     const pressureCounts = {};
-    
+
     // Count occurrences of each pressure value
-    pressureValues.forEach(pressure => {
+    pressureValues.forEach((pressure) => {
       const key = pressure.toFixed(1);
       pressureCounts[key] = (pressureCounts[key] || 0) + 1;
     });
 
     // Find pressures that appear more than twice
     const problematicPressures = Object.keys(pressureCounts).filter(
-      pressure => pressureCounts[pressure] > 2
+      (pressure) => pressureCounts[pressure] > 2,
     );
 
     if (problematicPressures.length === 0) {
@@ -65,55 +65,57 @@ function App() {
 
     // Create adjusted pressures
     const adjustedPressures = { ...newPressures };
-    
+
     // For each problematic pressure, adjust some instances
-    problematicPressures.forEach(problematicPressure => {
+    problematicPressures.forEach((problematicPressure) => {
       const pressureValue = parseFloat(problematicPressure);
       const keys = Object.keys(adjustedPressures).filter(
-        key => adjustedPressures[key].toFixed(1) === problematicPressure
+        (key) => adjustedPressures[key].toFixed(1) === problematicPressure,
       );
-      
+
       // Keep only 2 instances, adjust the rest
       const keysToAdjust = keys.slice(2);
-      
+
       keysToAdjust.forEach((key, index) => {
         let adjustmentAttempts = 0;
         let newValue;
-        
+
         do {
           // Try small adjustments first, then larger ones if needed
           const baseAdjustment = adjustmentAttempts < 5 ? 0.1 : 0.2;
           const adjustment = (Math.random() - 0.5) * baseAdjustment * 2;
           newValue = pressureValue + adjustment;
-          
+
           // Apply bounds based on the key (component type)
           switch (key) {
-            case 'cracker':
+            case "cracker":
               newValue = Math.max(0.5, Math.min(1.5, newValue));
               break;
-            case 'paraffin':
+            case "paraffin":
               newValue = Math.max(0.85, Math.min(1.15, newValue));
               break;
-            case 'kerosene':
+            case "kerosene":
               newValue = Math.max(0.5, Math.min(1.5, newValue));
               break;
-            case 'diesel':
+            case "diesel":
               newValue = Math.max(0.5, Math.min(1.5, newValue));
               break;
-            case 'petrol':
+            case "petrol":
               newValue = Math.max(0.9, Math.min(1.1, newValue));
               break;
             default:
               newValue = Math.max(0.5, Math.min(1.5, newValue));
           }
-          
+
           newValue = Math.round(newValue * 10) / 10;
           adjustmentAttempts++;
         } while (
-          Object.values(adjustedPressures).filter(p => p.toFixed(1) === newValue.toFixed(1)).length >= 2 &&
+          Object.values(adjustedPressures).filter(
+            (p) => p.toFixed(1) === newValue.toFixed(1),
+          ).length >= 2 &&
           adjustmentAttempts < 10
         );
-        
+
         adjustedPressures[key] = newValue;
       });
     });
@@ -125,40 +127,52 @@ function App() {
   const enforceTemperatureHierarchy = (temperatures) => {
     const adjustedTemps = { ...temperatures };
     const minGap = 0.5; // Minimum temperature difference between levels
-    
+
     // Sort components by hierarchy (highest to lowest)
-    const hierarchy = ['cracker', 'paraffin', 'kerosene', 'diesel', 'petrol'];
-    
+    const hierarchy = ["cracker", "paraffin", "kerosene", "diesel", "petrol"];
+
     // Enforce hierarchy from top to bottom
     for (let i = 1; i < hierarchy.length; i++) {
       const current = hierarchy[i];
       const above = hierarchy[i - 1];
-      
+
       // If current temp is >= above temp, adjust it down
       if (adjustedTemps[current] >= adjustedTemps[above]) {
         adjustedTemps[current] = adjustedTemps[above] - minGap;
-        
+
         // Apply component-specific bounds after adjustment
         switch (current) {
-          case 'paraffin':
-            adjustedTemps[current] = Math.max(300, Math.min(350, adjustedTemps[current]));
+          case "paraffin":
+            adjustedTemps[current] = Math.max(
+              300,
+              Math.min(350, adjustedTemps[current]),
+            );
             break;
-          case 'kerosene':
-            adjustedTemps[current] = Math.max(250, Math.min(300, adjustedTemps[current]));
+          case "kerosene":
+            adjustedTemps[current] = Math.max(
+              250,
+              Math.min(300, adjustedTemps[current]),
+            );
             break;
-          case 'diesel':
-            adjustedTemps[current] = Math.max(150, Math.min(250, adjustedTemps[current]));
+          case "diesel":
+            adjustedTemps[current] = Math.max(
+              150,
+              Math.min(250, adjustedTemps[current]),
+            );
             break;
-          case 'petrol':
-            adjustedTemps[current] = Math.max(30, Math.min(40, adjustedTemps[current]));
+          case "petrol":
+            adjustedTemps[current] = Math.max(
+              30,
+              Math.min(40, adjustedTemps[current]),
+            );
             break;
         }
-        
+
         // Round to 1 decimal place
         adjustedTemps[current] = Math.round(adjustedTemps[current] * 10) / 10;
       }
     }
-    
+
     return adjustedTemps;
   };
 
@@ -618,7 +632,7 @@ function App() {
             paraffin: paraffinPressure,
             kerosene: kerosenePressure,
             diesel: dieselPressure,
-            petrol: petrolPressure
+            petrol: petrolPressure,
           };
 
           // Get current temperature values
@@ -627,14 +641,16 @@ function App() {
             paraffin: paraffinTemp,
             kerosene: keroseneTemp,
             diesel: dieselTemp,
-            petrol: petrolTemp
+            petrol: petrolTemp,
           };
 
           // Check and adjust for pressure collisions
-          const adjustedPressures = adjustPressuresForCollisions(currentPressures);
+          const adjustedPressures =
+            adjustPressuresForCollisions(currentPressures);
 
           // Enforce temperature hierarchy
-          const adjustedTemperatures = enforceTemperatureHierarchy(currentTemperatures);
+          const adjustedTemperatures =
+            enforceTemperatureHierarchy(currentTemperatures);
 
           // Update pressure state if adjustments were made
           if (adjustedPressures.cracker !== currentPressures.cracker) {
@@ -674,7 +690,19 @@ function App() {
     }, 4000); // Update every 4 seconds
 
     return () => clearInterval(tempTimer);
-  }, [cycleStartTime, crackerPressure, paraffinPressure, kerosenePressure, dieselPressure, petrolPressure, crackerTemp, paraffinTemp, keroseneTemp, dieselTemp, petrolTemp]);
+  }, [
+    cycleStartTime,
+    crackerPressure,
+    paraffinPressure,
+    kerosenePressure,
+    dieselPressure,
+    petrolPressure,
+    crackerTemp,
+    paraffinTemp,
+    keroseneTemp,
+    dieselTemp,
+    petrolTemp,
+  ]);
 
   const formatDateTime = (date) => {
     const day = String(date.getDate()).padStart(2, "0");

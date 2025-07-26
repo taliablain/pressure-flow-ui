@@ -93,32 +93,37 @@ body {
 }
 
 /* Specific positioning for each product */
-.product-column:nth-child(1) { /* PETROL */
+.product-column:nth-child(1) {
+  /* PETROL */
   grid-column: 1;
   grid-row: 2 / span 2;
   margin-top: 100px;
 }
 
-.product-column:nth-child(2) { /* DIESEL */
+.product-column:nth-child(2) {
+  /* DIESEL */
   grid-column: 2;
   grid-row: 1 / span 3;
   margin-right: -370px; /* Move diesel much closer to kerosene */
 }
 
-.product-column:nth-child(3) { /* KEROSENE */
+.product-column:nth-child(3) {
+  /* KEROSENE */
   grid-column: 3;
   grid-row: 1 / span 3;
   margin-right: -200px; /* Move kerosene much closer to paraffin */
 }
 
-.product-column:nth-child(4) { /* PARAFFIN */
+.product-column:nth-child(4) {
+  /* PARAFFIN */
   grid-column: 4;
   grid-row: 1 / span 3;
   margin-right: -30px;
   /* Remove margin to keep distance to cracker the same */
 }
 
-.product-column:nth-child(5) { /* CRACKER */
+.product-column:nth-child(5) {
+  /* CRACKER */
   grid-column: 5;
   grid-row: 1 / span 3;
 }
@@ -259,6 +264,22 @@ body {
   justify-content: center;
 }
 
+/* Extend connection lines to reach aligned trapeziums */
+.product-column:nth-child(2) .connection-line {
+  /* DIESEL */
+  height: 400px; /* Extended to reach trapezium at petrol level */
+}
+
+.product-column:nth-child(3) .connection-line {
+  /* KEROSENE */
+  height: 400px; /* Extended to reach trapezium at petrol level */
+}
+
+.product-column:nth-child(4) .connection-line {
+  /* PARAFFIN */
+  height: 400px; /* Extended to reach trapezium at petrol level */
+}
+
 /* Hide connection line for cracker */
 .product-column:nth-child(5) .connection-line {
   display: none;
@@ -286,6 +307,7 @@ body {
   border-top: none;
   clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 0; /* Remove any margin between line and trap */
 }
 
 /* Hide collection trap for cracker */
@@ -358,29 +380,34 @@ body {
     padding: 40px 15px;
   }
 
-  .product-column:nth-child(1) { /* PETROL */
+  .product-column:nth-child(1) {
+    /* PETROL */
     grid-column: 1;
     grid-row: 3;
     margin-top: 0;
   }
 
-  .product-column:nth-child(2) { /* DIESEL */
+  .product-column:nth-child(2) {
+    /* DIESEL */
     grid-column: 2;
     grid-row: 3;
     margin-top: 0;
   }
 
-  .product-column:nth-child(3) { /* KEROSENE */
+  .product-column:nth-child(3) {
+    /* KEROSENE */
     grid-column: 1;
     grid-row: 2;
   }
 
-  .product-column:nth-child(4) { /* PARAFFIN */
+  .product-column:nth-child(4) {
+    /* PARAFFIN */
     grid-column: 2;
     grid-row: 2;
   }
 
-  .product-column:nth-child(5) { /* CRACKER */
+  .product-column:nth-child(5) {
+    /* CRACKER */
     grid-column: 1 / span 2;
     grid-row: 1;
   }
