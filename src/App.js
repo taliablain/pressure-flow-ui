@@ -745,24 +745,28 @@ function App() {
           </div>
         ))}
 
-        {/* Fifth circle with CRACKER label and dynamic temperature and pressure */}
-        <div className="product-column">
+        {/* Cracker cylinder */}
+        <div className="product-column cracker-column">
           <div className="product-label">CRACKER</div>
-          <div className="product-circle">
-            <div className="measurement-boxes">
-              <div className="measurement-box temperature">
-                <span className="measurement-value">
-                  {crackerTemp.toFixed(1)}
-                </span>
-                <span className="measurement-unit">°C</span>
-              </div>
-              <div className="measurement-box pressure">
-                <span className="measurement-value">
-                  {crackerPressure.toFixed(1)}
-                </span>
-                <span className="measurement-unit">bar</span>
+          <div className="simple-cylinder">
+            <div className="cylinder-top-cap"></div>
+            <div className="cylinder-main-body">
+              <div className="measurement-boxes">
+                <div className="measurement-box temperature">
+                  <span className="measurement-value">
+                    {crackerTemp.toFixed(1)}
+                  </span>
+                  <span className="measurement-unit">°C</span>
+                </div>
+                <div className="measurement-box pressure">
+                  <span className="measurement-value">
+                    {crackerPressure.toFixed(1)}
+                  </span>
+                  <span className="measurement-unit">bar</span>
+                </div>
               </div>
             </div>
+            <div className="cylinder-bottom-cap"></div>
           </div>
         </div>
       </div>

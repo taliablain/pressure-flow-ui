@@ -73,13 +73,15 @@ body {
 
 /* Main Distillation Layout */
 .distillation-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 80px;
   padding: 80px 40px;
   flex: 1;
   background-color: #f5f5f5;
+  justify-items: center;
+  align-items: start;
 }
 
 .product-column {
@@ -87,15 +89,38 @@ body {
   flex-direction: column;
   align-items: center;
   position: relative;
+  grid-row: 1 / span 3;
 }
 
-.product-column:last-child {
-  padding-top: 60px; /* Same as label height + margin to align circles */
+/* Specific positioning for each product */
+.product-column:nth-child(1) { /* PETROL */
+  grid-column: 1;
+  grid-row: 2 / span 2;
+  margin-top: 100px;
 }
 
-.product-column:last-child .product-circle {
-  width: 200px;
-  height: 200px;
+.product-column:nth-child(2) { /* DIESEL */
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  margin-right: -370px; /* Move diesel much closer to kerosene */
+}
+
+.product-column:nth-child(3) { /* KEROSENE */
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  margin-right: -200px; /* Move kerosene much closer to paraffin */
+}
+
+.product-column:nth-child(4) { /* PARAFFIN */
+  grid-column: 4;
+  grid-row: 1 / span 3;
+  margin-right: -30px;
+  /* Remove margin to keep distance to cracker the same */
+}
+
+.product-column:nth-child(5) { /* CRACKER */
+  grid-column: 5;
+  grid-row: 1 / span 3;
 }
 
 .product-label {
@@ -108,8 +133,8 @@ body {
 }
 
 .product-circle {
-  width: 220px; /* Increased from 190px */
-  height: 220px; /* Increased from 190px */
+  width: 180px;
+  height: 180px;
   border: 2px solid #333;
   border-radius: 50%;
   background-color: #e8e8e8;
@@ -120,11 +145,81 @@ body {
   justify-content: center;
 }
 
+/* Cracker cylinder styling */
+.cracker-column {
+  grid-column: 5;
+  grid-row: 1 / span 3;
+  margin-right: 130px;
+  margin-left: -30px; /* Move cracker closer to paraffin */
+}
+
+.simple-cylinder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cylinder-top-cap {
+  width: 180px;
+  height: 36px;
+  background: #e8e8e8;
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: relative;
+  z-index: 3;
+}
+
+.cylinder-main-body {
+  width: 180px;
+  height: 280px;
+  background: #e8e8e8;
+  border-left: 2px solid #333;
+  border-right: 2px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  margin-top: -18px;
+  margin-bottom: -18px;
+}
+
+.cylinder-bottom-cap {
+  width: 180px;
+  height: 36px;
+  background: #e8e8e8;
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: relative;
+  z-index: 3;
+}
+
+.cylinder-container,
+.cylinder-canvas,
+.cylinder-measurements,
+.cylinder-top,
+.cylinder-body,
+.cylinder-bottom {
+  display: none;
+}
+
+/* Remove old cylinder styling */
+.product-column:nth-child(5) .product-circle {
+  display: none;
+}
+
+.product-column:nth-child(5) .product-circle::before,
+.product-column:nth-child(5) .product-circle::after {
+  display: none;
+}
+
 .measurement-boxes {
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: center;
+  z-index: 10;
+  position: relative;
 }
 
 .measurement-box {
@@ -164,6 +259,11 @@ body {
   justify-content: center;
 }
 
+/* Hide connection line for cracker */
+.product-column:nth-child(5) .connection-line {
+  display: none;
+}
+
 .arrow-down {
   position: absolute;
   top: 50%;
@@ -188,6 +288,11 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Hide collection trap for cracker */
+.product-column:nth-child(5) .collection-trap {
+  display: none;
+}
+
 /* Footer */
 .footer {
   height: 60px;
@@ -208,10 +313,7 @@ body {
 .logo-image {
   height: 40px;
   width: auto;
-  /* Removed filter to keep original logo colors */
 }
-
-/* CSS rules for nav-buttons removed - buttons will not be displayed */
 
 /* Responsive Design */
 @media (max-width: 1200px) {
@@ -221,8 +323,21 @@ body {
   }
 
   .product-circle {
-    width: 140px; /* Increased from 120px */
-    height: 140px; /* Increased from 120px */
+    width: 140px;
+    height: 140px;
+  }
+
+  .cylinder-top-cap,
+  .cylinder-bottom-cap {
+    width: 120px;
+    height: 24px;
+  }
+
+  .cylinder-main-body {
+    width: 120px;
+    height: 180px;
+    margin-top: -12px;
+    margin-bottom: -12px;
   }
 
   .product-label {
@@ -237,14 +352,47 @@ body {
 
 @media (max-width: 768px) {
   .distillation-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto auto;
     gap: 40px;
-    flex-wrap: wrap;
     padding: 40px 15px;
   }
 
+  .product-column:nth-child(1) { /* PETROL */
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: 0;
+  }
+
+  .product-column:nth-child(2) { /* DIESEL */
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 0;
+  }
+
+  .product-column:nth-child(3) { /* KEROSENE */
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .product-column:nth-child(4) { /* PARAFFIN */
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .product-column:nth-child(5) { /* CRACKER */
+    grid-column: 1 / span 2;
+    grid-row: 1;
+  }
+
   .product-circle {
-    width: 120px; /* Increased from 100px */
-    height: 120px; /* Increased from 100px */
+    width: 120px;
+    height: 120px;
+  }
+
+  .product-column:nth-child(5) .product-circle {
+    width: 100spx;
+    height: 150px;
   }
 
   .product-label {
