@@ -250,6 +250,19 @@ body {
   z-index: 4;
 }
 
+/* Red line between diesel and petrol */
+.product-column:nth-child(2) .diesel-to-petrol-line {
+  position: absolute;
+  top: 250px; /* Same level as other lines */
+  left: -360px; /* Extend left toward petrol */
+  width: 386px; /* Length to reach petrol */
+  height: 3.5px;
+  background-color: #d32f2f;
+  z-index: 4;
+  transform: rotate(-29deg); /* Rotates 45 degrees clockwise */
+  transform-origin: center; 
+}
+
 .pyrolysis-label {
   position: absolute;
   font-size: 14px;

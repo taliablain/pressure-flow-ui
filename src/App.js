@@ -773,6 +773,7 @@ return (
           {/* Add red lines to specific products */}
           {product === "PARAFFIN" && <div className="paraffin-to-kerosene-line"></div>}
           {product === "KEROSENE" && <div className="kerosene-to-diesel-line"></div>}
+          {product === "DIESEL" && <div className="diesel-to-petrol-line"></div>}
         </div>
       ))}
 
