@@ -795,6 +795,14 @@ function App() {
               </div>
             </div>
             <div className="cylinder-bottom-cap"></div>
+            {/* Cracker Entry Line */}
+            <div className="cracker-exit-line"></div>
+            {/* Vertical line with arrow */}
+            <div className="cracker-vertical-line">
+              <div className="arrow-down"></div>
+            </div>
+            {/* Pyrolysis oil input label */}
+            <div className="pyrolysis-label">PYROLYSIS OIL INPUT</div>
           </div>
         </div>
       </div>

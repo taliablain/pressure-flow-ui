@@ -34,24 +34,6 @@ body {
   gap: 10px;
 }
 
-.flame-controls {
-  display: flex;
-  gap: 10px;
-}
-
-.flame-button {
-  padding: 8px 15px;
-  border: 2px solid #666;
-  background-color: #f0f0f0;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.flame-button:hover {
-  background-color: #e0e0e0;
-}
-
 .header-center h1 {
   font-size: 24px;
   font-weight: bold;
@@ -156,12 +138,14 @@ body {
   grid-row: 1 / span 3;
   margin-right: 130px;
   margin-left: -30px; /* Move cracker closer to paraffin */
+  position: relative; /* Added for exit line positioning */
 }
 
 .simple-cylinder {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative; /* Added for exit line positioning */
 }
 
 .cylinder-top-cap {
@@ -197,6 +181,49 @@ body {
   border-radius: 50%;
   position: relative;
   z-index: 3;
+}
+
+/* Cracker Entry Line from Right Side */
+.cracker-exit-line {
+  position: absolute;
+  top: 50%;
+  right: -60px; /* Connect to right side of cylinder */
+  width: 60px; /* Horizontal segment going right */
+  height: 2px;
+  background-color: #333;
+  z-index: 4;
+}
+
+/* Horizontal line from screen edge */
+.cracker-exit-line::after {
+  content: "";
+  position: absolute;
+  top: -201px; /* At top of vertical line */
+  right: -200px; /* Extend further right from vertical line */
+  width: 200px; /* Extend toward screen edge */
+  height: 2px;
+  background-color: #333;
+}
+
+/* Vertical line as a separate element */
+.cracker-vertical-line {
+  position: absolute;
+  top: -43px; /* Start 200px above the horizontal line */
+  right: -62px; /* Align with the vertical line position */
+  width: 2px;
+  height: 203px; /* Vertical drop */
+  background-color: #333;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pyrolysis-label {
+  position: absolute;
+  font-size: 14px;
+  top: -70px; /* This controls up/down position */
+  right: -160px; /* This controls left/right position */
 }
 
 .cylinder-container,
@@ -370,6 +397,23 @@ body {
     width: 80px;
     height: 60px;
   }
+
+  /* Adjust entry line for smaller screens */
+  .cracker-exit-line {
+    width: 80px;
+    left: -80px;
+  }
+
+  .cracker-exit-line::before {
+    height: 120px;
+    top: -120px;
+  }
+
+  .cracker-exit-line::after {
+    left: -150px;
+    width: 150px;
+    top: -121px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -441,5 +485,22 @@ body {
 
   .datetime {
     font-size: 14px;
+  }
+
+  /* Adjust entry line for mobile */
+  .cracker-exit-line {
+    width: 60px;
+    left: -60px;
+  }
+
+  .cracker-exit-line::before {
+    height: 80px;
+    top: -80px;
+  }
+
+  .cracker-exit-line::after {
+    left: -100px;
+    width: 100px;
+    top: -81px;
   }
 }
