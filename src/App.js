@@ -734,7 +734,13 @@ return (
       {products.map((product, index) => (
         <div key={product} className="product-column">
           <div className="product-label">{product}</div>
-          <div className="product-circle">
+          <div className={
+            product === "PETROL" ? "petrol-circle" :
+            product === "DIESEL" ? "diesel-circle" :
+            product === "KEROSENE" ? "kerosene-circle" :
+            product === "PARAFFIN" ? "paraffin-circle" :
+            "product-circle"
+          }>
             <div className="measurement-boxes">
               <div className="measurement-box temperature">
                 <span className="measurement-value">

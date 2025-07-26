@@ -124,12 +124,63 @@ body {
   height: 180px;
   border: 2px solid #333;
   border-radius: 50%;
-  background-color: #e8e8e8;
   position: relative;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.petrol-circle {
+  width: 180px;
+  height: 180px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 30%, rgba(34, 139, 34, 0.3), rgba(34, 139, 34, 0.6), rgba(34, 139, 34, 0.8));
+}
+
+.diesel-circle {
+  width: 180px;
+  height: 180px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 30%, rgba(26, 26, 26, 0.3), rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.8));
+}
+
+.kerosene-circle {
+  width: 180px;
+  height: 180px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 30%, rgba(30, 144, 255, 0.3), rgba(30, 144, 255, 0.6), rgba(30, 144, 255, 0.8));
+}
+
+.paraffin-circle {
+  width: 180px;
+  height: 180px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 30%, rgba(139, 69, 19, 0.3), rgba(139, 69, 19, 0.6), rgba(139, 69, 19, 0.8));
 }
 
 /* Cracker cylinder styling */
@@ -325,9 +376,9 @@ body {
 }
 
 .connection-line {
-  width: 2px;
+  width: 3.5px;
   height: 200px;
-  background-color: #333;
+  background-color: #5c9b5c;
   margin: 0;
   position: relative;
   display: flex;
@@ -339,16 +390,22 @@ body {
 .product-column:nth-child(2) .connection-line {
   /* DIESEL */
   height: 400px; /* Extended to reach trapezium at petrol level */
+  background-color: #595959;
+  width: 3.5px;
 }
 
 .product-column:nth-child(3) .connection-line {
   /* KEROSENE */
   height: 400px; /* Extended to reach trapezium at petrol level */
+  background-color: #5aaeff;
+  width: 3.5px;
 }
 
 .product-column:nth-child(4) .connection-line {
   /* PARAFFIN */
   height: 400px; /* Extended to reach trapezium at petrol level */
+  background-color: #8B4513;
+  width: 3.5px;
 }
 
 /* Hide connection line for cracker */
