@@ -775,11 +775,9 @@ return (
           <div className="connection-line">
             <div className="arrow-down"></div>
           </div>
-          <div className="collection-trap"></div>
-          {/* Add red lines to specific products */}
-          {product === "PARAFFIN" && <div className="paraffin-to-kerosene-line"></div>}
-          {product === "KEROSENE" && <div className="kerosene-to-diesel-line"></div>}
-          {product === "DIESEL" && <div className="diesel-to-petrol-line"></div>}
+          <div className="collection-trap">
+            <div className="trap-label">PRODUCT BUFFER STORAGE TANK</div>
+          </div>
         </div>
       ))}
 
