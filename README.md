@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# Oil Separation Refinery Interface
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A real-time industrial control interface for monitoring an oil distillation refinery system. Built with React, this application displays dynamic temperature and pressure readings for different petroleum products with realistic fluctuation patterns.
+
+## Features
+
+- **Real-time Clock**: Live date/time display in the header
+- **Dynamic Measurements**: All products show realistic temperature and pressure fluctuations
+- **Staggered Updates**: Different products update at offset intervals for realistic industrial behavior
+- **3-Hour Cycles**: All readings follow a complete 3-hour simulation cycle
+- **Professional UI**: Industrial-style interface with measurement boxes and process flow visualization
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js (version 14 or higher)
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <https://github.com/taliablain/pressure-flow-ui.git>
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Install development tools (ESLint and Prettier):
+```bash
+npm run install-dev-tools
+```
+
+4. Start the development server:
+```bash
+npm start
+```
+
+5. Open [http://localhost:3000](http://localhost:3000) to view the application in your browser.
 
 ## Available Scripts
 
-In the project directory, you can run:
-
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs the app in development mode. The page will reload when you make changes.
 
 ### `npm run build`
+Builds the app for production to the `build` folder.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `npm test`
+Launches the test runner in interactive watch mode.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `npm run install-dev-tools`
+Installs ESLint and Prettier for code formatting and linting.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `npm run lint`
+Runs ESLint to check for code issues.
 
-### `npm run eject`
+### `npm run lint:fix`
+Automatically fixes ESLint issues where possible.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### `npm run format`
+Formats code using Prettier.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## System Configuration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Temperature and Pressure Settings
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+| Product | Temperature Range | Pressure Range | Update Timing | Special Behavior |
+|---------|------------------|----------------|---------------|------------------|
+| **CRACKER** | 650-750°C | 0.5-1.5 bar | Immediate (0ms) | Complex sine wave patterns |
+| **PARAFFIN** | 300-320°C (spikes to 350°C) | ~1.0 bar (0.85-1.15) | 500ms delay | 5% chance of temperature spikes |
+| **KEROSENE** | 250-300°C | 0.5-1.5 bar | 1000ms delay | Moderate fluctuation patterns |
+| **DIESEL** | 150-250°C | 0.5-1.5 bar | 1500ms delay | Out-of-sync with other products |
+| **PETROL** | 30-40°C | 0.9-1.1 bar | 2000ms delay | Very stable pressure around 1.0 |
 
-## Learn More
+### Update Intervals
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Main Timer**: 4-second intervals
+- **Temperature Changes**: Maximum 0.2-0.4°C per update (varies by product)
+- **Pressure Changes**: Maximum 0.005-0.02 bar per update (varies by product)
+- **Cycle Duration**: 3 hours before reset
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Fluctuation Patterns
 
-### Code Splitting
+Each product uses multiple overlapping sine waves with different frequencies to create realistic industrial fluctuations:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Primary Wave**: Main temperature trend over the 3-hour cycle
+- **Secondary Wave**: Mid-frequency variations for natural fluctuation
+- **Tertiary Wave**: High-frequency micro-fluctuations for realism
+- **Random Variation**: Small random changes added to each update
 
-### Analyzing the Bundle Size
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+src/
+├── App.js          # Main application component with all logic
+├── App.css         # Styling for the industrial interface
+└── index.js        # Application entry point
+```
 
-### Making a Progressive Web App
+## Customization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+To modify temperature ranges, pressure settings, or update intervals, edit the calculation sections in `App.js`:
 
-### Advanced Configuration
+- Search for product-specific calculation blocks (e.g., "CRACKER TEMPERATURE CALCULATION")
+- Adjust `baseTemp`, `tempRange`, `basePressure`, and `pressureRange` values
+- Modify `maxChange` values to control update rates
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Technologies Used
 
-### Deployment
+- **React 18**: Frontend framework
+- **CSS3**: Styling
+- **JavaScript ES6+**: Modern JavaScript features
+- **ESLint**: Code linting
+- **Prettier**: Code formatting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

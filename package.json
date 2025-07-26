@@ -19,7 +19,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+        "install-dev-tools": "npm install --save-dev eslint @eslint/js eslint-plugin-react eslint-plugin-react-hooks prettier eslint-config-prettier"
   },
   "eslintConfig": {
     "extends": [
