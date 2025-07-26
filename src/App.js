@@ -44,6 +44,13 @@ function App() {
   });
   const [cycleStartTime, setCycleStartTime] = useState(Date.now());
 
+   const [dieselFlowRate, setDieselFlowRate] = useState(30);
+   const [keroseneFlowRate, setKeroseneFlowRate] = useState(15);
+   const [paraffinFlowRate, setParaffinFlowRate] = useState(6);
+   const [petrolFlowRate, setPetrolFlowRate] = useState(12);
+
+
+
   // Function to check and adjust pressures to prevent more than 2 identical values
   const adjustPressuresForCollisions = (newPressures) => {
     const pressureValues = Object.values(newPressures);
@@ -689,6 +696,9 @@ function App() {
         }, 100); // Small delay to ensure all pressure updates are complete
       }, 2000); // 2000ms delay for petrol updates
     }, 4000); // Update every 4 seconds
+    
+
+  
 
     return () => clearInterval(tempTimer);
   }, [
@@ -704,6 +714,50 @@ function App() {
     dieselTemp,
     petrolTemp,
   ]);
+
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setDieselFlowRate(prev => {
+      const next = prev + 0.1;
+      return next > 100 ? 100 : next; // cap at 100%
+    });
+  }, 60000); // 60000 ms = 1 minute
+
+  return () => clearInterval(interval); // cleanup on unmount
+}, []);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setKeroseneFlowRate(prev => {
+      const next = prev + 0.1;
+      return next > 100 ? 100 : next; // cap at 100%
+    });
+  }, 120000); // 120000 ms = 2 minutes
+
+  return () => clearInterval(interval);
+}, []);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setParaffinFlowRate(prev => {
+      const next = prev + 0.1;
+      return next > 100 ? 100 : next; // cap at 100%
+    });
+  }, 480000); // 8 minutes in milliseconds
+
+  return () => clearInterval(interval);
+}, []);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setPetrolFlowRate(prev => {
+      const next = prev + 0.1;
+      return next > 100 ? 100 : next; // Cap at 100%
+    });
+  }, 150000); // 2.5 minutes in milliseconds
+
+  return () => clearInterval(interval);
+}, []);
 
   const formatDateTime = (date) => {
     const day = String(date.getDate()).padStart(2, "0");
@@ -749,41 +803,58 @@ return (
             "product-circle"
           }>
             <div className="measurement-boxes">
-              <div className="measurement-box temperature">
-                <span className="measurement-value">
-                  {product === "PARAFFIN"
-                    ? paraffinTemp.toFixed(1)
-                    : product === "KEROSENE"
-                      ? keroseneTemp.toFixed(1)
-                      : product === "DIESEL"
-                        ? dieselTemp.toFixed(1)
-                        : product === "PETROL"
-                          ? petrolTemp.toFixed(1)
-                          : "25.0"}
-                </span>
-                <span className="measurement-unit">°C</span>
-              </div>
-              <div className="measurement-box pressure">
-                <span className="measurement-value">
-                  {product === "PARAFFIN"
-                    ? paraffinPressure.toFixed(1)
-                    : product === "KEROSENE"
-                      ? kerosenePressure.toFixed(1)
-                      : product === "DIESEL"
-                        ? dieselPressure.toFixed(1)
-                        : product === "PETROL"
-                          ? petrolPressure.toFixed(1)
-                          : "1.2"}
-                </span>
-                <span className="measurement-unit">bar</span>
-              </div>
-            </div>
+  <div className="measurement-box temperature">
+    <span className="measurement-value">
+      {product === "PARAFFIN"
+        ? paraffinTemp.toFixed(1)
+        : product === "KEROSENE"
+          ? keroseneTemp.toFixed(1)
+          : product === "DIESEL"
+            ? dieselTemp.toFixed(1)
+            : product === "PETROL"
+              ? petrolTemp.toFixed(1)
+              : "25.0"}
+    </span>
+    <span className="measurement-unit">°C</span>
+  </div>
+
+  <div className="measurement-box pressure">
+    <span className="measurement-value">
+      {product === "PARAFFIN"
+        ? paraffinPressure.toFixed(1)
+        : product === "KEROSENE"
+          ? kerosenePressure.toFixed(1)
+          : product === "DIESEL"
+            ? dieselPressure.toFixed(1)
+            : product === "PETROL"
+              ? petrolPressure.toFixed(1)
+              : "1.2"}
+    </span>
+    <span className="measurement-unit">bar</span>
+  </div>
+
+  {/* NEW measurement box */}
+  <div className="measurement-box flow-rate">
+    <span className="measurement-value">
+      {product === "PARAFFIN"
+        ? paraffinFlowRate.toFixed(1)
+        : product === "KEROSENE"
+          ? keroseneFlowRate.toFixed(1)
+          : product === "DIESEL"
+            ? dieselFlowRate.toFixed(1)
+            : product === "PETROL"
+              ? petrolFlowRate.toFixed(1)
+              : "0.0"}
+    </span>
+    <span className="measurement-unit">%</span>
+  </div>
+</div>
+
           </div>
           <div className="connection-line">
             <div className="arrow-down"></div>
-            <div className="measurement-box-percentage">
               </div>
-          </div>
+
           <div className="collection-trap">
             <div className="trap-label">PRODUCT BUFFER STORAGE TANK</div>
           </div>

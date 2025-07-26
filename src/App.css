@@ -329,19 +329,10 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.measurement-box-percentage {
-  background-color: white;
-  border: 1px solid #666;
-  border-radius: 4px;
-  padding: 8px 15px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  min-width: 80px;
-  min-height: 35px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  margin-left: 150px;
+.measurement-boxes .measurement-box.flow-rate {
+  position: relative;
+  margin-left: 130px;
+  top: 230px;
 }
 
 .measurement-value {
