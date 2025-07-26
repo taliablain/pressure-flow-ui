@@ -834,20 +834,26 @@ return (
   </div>
 
   {/* NEW measurement box */}
-  <div className="measurement-box flow-rate">
-    <span className="measurement-value">
-      {product === "PARAFFIN"
-        ? paraffinFlowRate.toFixed(1)
-        : product === "KEROSENE"
-          ? keroseneFlowRate.toFixed(1)
-          : product === "DIESEL"
-            ? dieselFlowRate.toFixed(1)
-            : product === "PETROL"
-              ? petrolFlowRate.toFixed(1)
-              : "0.0"}
-    </span>
-    <span className="measurement-unit">%</span>
-  </div>
+  <div
+  className={
+    product === "PETROL"
+      ? "measurement-box flow-rate petrol-flow-rate-up"
+      : "measurement-box flow-rate"
+  }
+>
+  <span className="measurement-value">
+    {product === "PARAFFIN"
+      ? paraffinFlowRate.toFixed(1)
+      : product === "KEROSENE"
+      ? keroseneFlowRate.toFixed(1)
+      : product === "DIESEL"
+      ? dieselFlowRate.toFixed(1)
+      : product === "PETROL"
+      ? petrolFlowRate.toFixed(1)
+      : "0.0"}
+  </span>
+  <span className="measurement-unit">%</span>
+</div>
 </div>
 
           </div>

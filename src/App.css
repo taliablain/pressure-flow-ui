@@ -335,6 +335,13 @@ body {
   top: 230px;
 }
 
+.petrol-flow-rate-up {
+  transform: translateY(-100px); /* move up 20px */
+  /* Optional: add z-index if you want it over other elements */
+  position: relative;
+  z-index: 2;
+}
+
 .measurement-value {
   font-size: 14px;
   font-weight: normal;
