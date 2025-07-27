@@ -221,7 +221,6 @@ body {
   transform: translateY(-27px);
 }
 
-
 .product-circle {
   width: 180px;
   height: 180px;
@@ -245,7 +244,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 30% 30%, rgba(34, 139, 34, 0.3), rgba(34, 139, 34, 0.6), rgba(34, 139, 34, 0.8));
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(34, 139, 34, 0.3),
+    rgba(34, 139, 34, 0.6),
+    rgba(34, 139, 34, 0.8)
+  );
   z-index: 2;
 }
 
@@ -259,7 +263,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 30% 30%, rgba(26, 26, 26, 0.3), rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.8));
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(26, 26, 26, 0.3),
+    rgba(26, 26, 26, 0.6),
+    rgba(26, 26, 26, 0.8)
+  );
   z-index: 2;
 }
 
@@ -273,7 +282,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 30% 30%, rgba(30, 144, 255, 0.3), rgba(30, 144, 255, 0.6), rgba(30, 144, 255, 0.8));
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(30, 144, 255, 0.3),
+    rgba(30, 144, 255, 0.6),
+    rgba(30, 144, 255, 0.8)
+  );
   z-index: 2;
 }
 
@@ -287,7 +301,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 30% 30%, rgba(139, 69, 19, 0.3), rgba(139, 69, 19, 0.6), rgba(139, 69, 19, 0.8));
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(139, 69, 19, 0.3),
+    rgba(139, 69, 19, 0.6),
+    rgba(139, 69, 19, 0.8)
+  );
   z-index: 2;
 }
 
@@ -425,7 +444,7 @@ body {
   font-size: 14px;
   color: #333;
   margin-left: 3px;
-  font-weight: bold
+  font-weight: bold;
 }
 
 .trap-label {
@@ -462,7 +481,7 @@ body {
 
 .product-column:nth-child(4) .connection-line {
   height: 400px;
-  background-color: #8B4513;
+  background-color: #8b4513;
   width: 3.5px;
 }
 
