@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import smallLogo from './small-logo.jpeg';
+import smallLogo from "./small-logo.jpeg";
 
 function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -44,12 +44,10 @@ function App() {
   });
   const [cycleStartTime, setCycleStartTime] = useState(Date.now());
 
-   const [dieselFlowRate, setDieselFlowRate] = useState(30);
-   const [keroseneFlowRate, setKeroseneFlowRate] = useState(15);
-   const [paraffinFlowRate, setParaffinFlowRate] = useState(6);
-   const [petrolFlowRate, setPetrolFlowRate] = useState(12);
-
-
+  const [dieselFlowRate, setDieselFlowRate] = useState(30);
+  const [keroseneFlowRate, setKeroseneFlowRate] = useState(15);
+  const [paraffinFlowRate, setParaffinFlowRate] = useState(6);
+  const [petrolFlowRate, setPetrolFlowRate] = useState(12);
 
   // Function to check and adjust pressures to prevent more than 2 identical values
   const adjustPressuresForCollisions = (newPressures) => {
@@ -696,9 +694,6 @@ function App() {
         }, 100); // Small delay to ensure all pressure updates are complete
       }, 2000); // 2000ms delay for petrol updates
     }, 4000); // Update every 4 seconds
-    
-
-  
 
     return () => clearInterval(tempTimer);
   }, [
@@ -716,48 +711,48 @@ function App() {
   ]);
 
   useEffect(() => {
-  const interval = setInterval(() => {
-    setDieselFlowRate(prev => {
-      const next = prev + 0.1;
-      return next > 100 ? 100 : next; // cap at 100%
-    });
-  }, 60000); // 60000 ms = 1 minute
+    const interval = setInterval(() => {
+      setDieselFlowRate((prev) => {
+        const next = prev + 0.1;
+        return next > 100 ? 100 : next; // cap at 100%
+      });
+    }, 60000); // 60000 ms = 1 minute
 
-  return () => clearInterval(interval); // cleanup on unmount
-}, []);
+    return () => clearInterval(interval); // cleanup on unmount
+  }, []);
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setKeroseneFlowRate(prev => {
-      const next = prev + 0.1;
-      return next > 100 ? 100 : next; // cap at 100%
-    });
-  }, 120000); // 120000 ms = 2 minutes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setKeroseneFlowRate((prev) => {
+        const next = prev + 0.1;
+        return next > 100 ? 100 : next; // cap at 100%
+      });
+    }, 120000); // 120000 ms = 2 minutes
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setParaffinFlowRate(prev => {
-      const next = prev + 0.1;
-      return next > 100 ? 100 : next; // cap at 100%
-    });
-  }, 480000); // 8 minutes in milliseconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setParaffinFlowRate((prev) => {
+        const next = prev + 0.1;
+        return next > 100 ? 100 : next; // cap at 100%
+      });
+    }, 480000); // 8 minutes in milliseconds
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setPetrolFlowRate(prev => {
-      const next = prev + 0.1;
-      return next > 100 ? 100 : next; // Cap at 100%
-    });
-  }, 150000); // 2.5 minutes in milliseconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPetrolFlowRate((prev) => {
+        const next = prev + 0.1;
+        return next > 100 ? 100 : next; // Cap at 100%
+      });
+    }, 150000); // 2.5 minutes in milliseconds
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
 
   const formatDateTime = (date) => {
     const day = String(date.getDate()).padStart(2, "0");
@@ -771,151 +766,172 @@ useEffect(() => {
 
   const products = ["PETROL", "DIESEL", "KEROSENE", "PARAFFIN"];
 
-return (
-  <div className="control-interface">
-    {/* Header */}
-    <div className="header">
-      <div className="header-left">
-        {/* You can remove the logo here or keep something else */}
-      </div>
-
-      <div className="header-center">
-        <img src={smallLogo} alt="Logo" className="logo-image" />
-        <h1>OIL SEPARATION REFINERY</h1>
-        <img src={smallLogo} alt="Right Logo" className="logo-image" />
-      </div>
-
-      <div className="header-right">
-        <div className="datetime">{formatDateTime(currentTime)}</div>
-      </div>
-    </div>
-
-    {/* Main Distillation Layout */}
-    <div className="distillation-container">
-      <div className="fixed-layout-wrapper">
-        {products.map((product, index) => (
-          <div key={product} className="product-column">
-            <div className="product-label">{product}</div>
-            <div className={
-              product === "PETROL" ? "petrol-circle" :
-              product === "DIESEL" ? "diesel-circle" :
-              product === "KEROSENE" ? "kerosene-circle" :
-              product === "PARAFFIN" ? "paraffin-circle" :
-              "product-circle"
-            }>
-              <div className="measurement-boxes">
-                <div className="measurement-box temperature">
-                  <span className="measurement-value">
-                    {product === "PARAFFIN"
-                      ? paraffinTemp.toFixed(1)
-                      : product === "KEROSENE"
-                        ? keroseneTemp.toFixed(1)
-                        : product === "DIESEL"
-                          ? dieselTemp.toFixed(1)
-                          : product === "PETROL"
-                            ? petrolTemp.toFixed(1)
-                            : "25.0"}
-                  </span>
-                  <span className="measurement-unit">°C</span>
-                </div>
-
-                <div className="measurement-box pressure">
-                  <span className="measurement-value">
-                    {product === "PARAFFIN"
-                      ? paraffinPressure.toFixed(1)
-                      : product === "KEROSENE"
-                        ? kerosenePressure.toFixed(1)
-                        : product === "DIESEL"
-                          ? dieselPressure.toFixed(1)
-                          : product === "PETROL"
-                            ? petrolPressure.toFixed(1)
-                            : "1.2"}
-                  </span>
-                  <span className="measurement-unit">bar</span>
-                </div>
-
-                <div
-                  className={
-                    product === "PETROL"
-                      ? "measurement-box flow-rate petrol-flow-rate-up"
-                      : "measurement-box flow-rate"
-                  }
-                >
-                  <span className="measurement-value">
-                    {product === "PARAFFIN"
-                      ? paraffinFlowRate.toFixed(1)
-                      : product === "KEROSENE"
-                      ? keroseneFlowRate.toFixed(1)
-                      : product === "DIESEL"
-                      ? dieselFlowRate.toFixed(1)
-                      : product === "PETROL"
-                      ? petrolFlowRate.toFixed(1)
-                      : "0.0"}
-                  </span>
-                  <span className="measurement-unit">%</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="connection-line">
-              <div className="arrow-down"></div>
-            </div>
-
-            <div className="collection-trap">
-              <div className="trap-label">PRODUCT BUFFER STORAGE TANK</div>
-            </div>
-          </div>
-        ))}
-
-        {/* Cracker cylinder - separate from products array */}
-        <div className="product-column cracker-column">
-          <div className="product-label">CRACKER</div>
-          <div className="simple-cylinder">
-            <div className="cylinder-top-cap"></div>
-            <div className="cylinder-main-body">
-              <div className="measurement-boxes">
-                <div className="measurement-box temperature">
-                  <span className="measurement-value">
-                    {crackerTemp.toFixed(1)}
-                  </span>
-                  <span className="measurement-unit">°C</span>
-                </div>
-                <div className="measurement-box pressure">
-                  <span className="measurement-value">
-                    {crackerPressure.toFixed(1)}
-                  </span>
-                  <span className="measurement-unit">bar</span>
-                </div>
-              </div>
-            </div>
-            <div className="cylinder-bottom-cap"></div>
-            {/* Cracker Entry Line */}
-            <div className="cracker-exit-line"></div>
-            {/* Vertical line with arrow */}
-            <div className="cracker-vertical-line">
-              <div className="arrow-down"></div>
-            </div>
-            {/* Pyrolysis oil input label */}
-            <div className="pyrolysis-label">PYROLYSIS OIL INPUT</div>
-          </div>
+  return (
+    <div className="control-interface">
+      {/* Header */}
+      <div className="header">
+        <div className="header-left">
+          {/* You can remove the logo here or keep something else */}
         </div>
 
-        {/* Connection lines within the fixed wrapper */}
-        <div className="paraffin-cracker-connection"></div>
-        <div className="kerosene-paraffin-connection"></div>
-        <div className="kerosene-diesel-connection"></div>
-        <div className="diesel-petrol-connection"></div>
-      </div>
-    </div>
+        <div className="header-center">
+          <img src={smallLogo} alt="Logo" className="logo-image" />
+          <h1>OIL SEPARATION REFINERY</h1>
+          <img src={smallLogo} alt="Right Logo" className="logo-image" />
+        </div>
 
-    {/* Footer */}
-    <div className="footer">
-      <div className="logo">
-        <img src="/renovari-logo.png" alt="Renovari" className="logo-image" />
+        <div className="header-right">
+          <div className="datetime">{formatDateTime(currentTime)}</div>
+        </div>
+      </div>
+
+      {/* Main Distillation Layout */}
+      <div className="distillation-container">
+        <div className="fixed-layout-wrapper">
+          {products.map((product, index) => (
+            <div key={product} className="product-column">
+              <div className="product-label">{product}</div>
+              <div
+                className={
+                  product === "PETROL"
+                    ? "petrol-circle"
+                    : product === "DIESEL"
+                      ? "diesel-circle"
+                      : product === "KEROSENE"
+                        ? "kerosene-circle"
+                        : product === "PARAFFIN"
+                          ? "paraffin-circle"
+                          : "product-circle"
+                }
+              >
+                <div className="measurement-boxes">
+                  <div className="measurement-box temperature">
+                    <span className="measurement-value">
+                      {product === "PARAFFIN"
+                        ? paraffinTemp.toFixed(1)
+                        : product === "KEROSENE"
+                          ? keroseneTemp.toFixed(1)
+                          : product === "DIESEL"
+                            ? dieselTemp.toFixed(1)
+                            : product === "PETROL"
+                              ? petrolTemp.toFixed(1)
+                              : "25.0"}
+                    </span>
+                    <span className="measurement-unit">°C</span>
+                  </div>
+
+                  <div className="measurement-box pressure">
+                    <span className="measurement-value">
+                      {product === "PARAFFIN"
+                        ? paraffinPressure.toFixed(1)
+                        : product === "KEROSENE"
+                          ? kerosenePressure.toFixed(1)
+                          : product === "DIESEL"
+                            ? dieselPressure.toFixed(1)
+                            : product === "PETROL"
+                              ? petrolPressure.toFixed(1)
+                              : "1.2"}
+                    </span>
+                    <span className="measurement-unit">bar</span>
+                  </div>
+
+                  <div
+                    className={
+                      product === "PETROL"
+                        ? "measurement-box flow-rate petrol-flow-rate-up"
+                        : "measurement-box flow-rate"
+                    }
+                  >
+                    <span className="measurement-value">
+                      {product === "PARAFFIN"
+                        ? paraffinFlowRate.toFixed(1)
+                        : product === "KEROSENE"
+                          ? keroseneFlowRate.toFixed(1)
+                          : product === "DIESEL"
+                            ? dieselFlowRate.toFixed(1)
+                            : product === "PETROL"
+                              ? petrolFlowRate.toFixed(1)
+                              : "0.0"}
+                    </span>
+                    <span className="measurement-unit">%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="connection-line">
+                <div className="arrow-down"></div>
+              </div>
+
+              <div className="collection-trap">
+                <div className="trap-label">PRODUCT BUFFER STORAGE TANK</div>
+              </div>
+            </div>
+          ))}
+
+          {/* Cracker cylinder - separate from products array */}
+          <div className="product-column cracker-column">
+            <div className="product-label">CRACKER</div>
+            <div className="simple-cylinder">
+              <div className="cylinder-top-cap"></div>
+              <div className="cylinder-main-body">
+                <div className="measurement-boxes">
+                  <div className="measurement-box temperature">
+                    <span className="measurement-value">
+                      {crackerTemp.toFixed(1)}
+                    </span>
+                    <span className="measurement-unit">°C</span>
+                  </div>
+                  <div className="measurement-box pressure">
+                    <span className="measurement-value">
+                      {crackerPressure.toFixed(1)}
+                    </span>
+                    <span className="measurement-unit">bar</span>
+                  </div>
+                </div>
+              </div>
+              <div className="cylinder-bottom-cap"></div>
+              {/* Cracker Entry Line */}
+              <div className="cracker-exit-line"></div>
+              {/* Vertical line with arrow */}
+              <div className="cracker-vertical-line">
+                <div className="arrow-down"></div>
+              </div>
+              {/* Pyrolysis oil input label */}
+              <div className="pyrolysis-label">PYROLYSIS OIL INPUT</div>
+            </div>
+          </div>
+
+          {/* Connection lines within the fixed wrapper */}
+          <div className="paraffin-cracker-connection">
+            <div className="arrow-left"></div>
+          </div>
+          <div className="kerosene-paraffin-connection">
+            <div className="arrow-left"></div>
+          </div>
+          <div className="kerosene-diesel-connection">
+            <div className="arrow-left"></div>
+          </div>
+          <div className="diesel-petrol-connection">
+            <div className="arrow-left"></div>
+          </div>
+
+          {/* Small vertical lines coming out of the top of circles */}
+          <div className="diesel-top-line"></div>
+          <div className="kerosene-diesel-top-line"></div>
+          <div className="kerosene-paraffin-top-line"></div>
+          <div className="kerosene-top-line"></div>
+          <div className="paraffin-top-line"></div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="footer">
+        <div className="logo">
+          <img src="/renovari-logo.png" alt="Renovari" className="logo-image" />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default App;

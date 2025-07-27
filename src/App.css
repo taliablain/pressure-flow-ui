@@ -136,9 +136,9 @@ body {
 
 .kerosene-paraffin-connection {
   position: absolute;
-  left: 980px;
-  top: 140px;
-  width: 120px;
+  left: 900px;
+  top: 20px;
+  width: 270px;
   height: 4px;
   background-color: #ff0000;
   z-index: 15;
@@ -146,9 +146,9 @@ body {
 
 .kerosene-diesel-connection {
   position: absolute;
-  left: 680px;
-  top: 140px;
-  width: 120px;
+  left: 600px;
+  top: 20px;
+  width: 270px;
   height: 4px;
   background-color: #ff0000;
   z-index: 15;
@@ -163,6 +163,46 @@ body {
   background-color: #ff0000;
   transform: rotate(-18deg);
   transform-origin: left center;
+  z-index: 15;
+}
+
+.diesel-top-line {
+  position: absolute;
+  left: 600px;
+  top: 20px;
+  width: 4px;
+  height: 34px;
+  background-color: #ff0000;
+  z-index: 15;
+}
+
+.kerosene-diesel-top-line {
+  position: absolute;
+  left: 870px;
+  top: 20px;
+  width: 4px;
+  height: 35px;
+  background-color: #ff0000;
+  z-index: 15;
+}
+
+.kerosene-paraffin-top-line {
+  position: absolute;
+  left: 900px;
+  top: 20px;
+  width: 4px;
+  height: 34px;
+  background-color: #ff0000;
+  z-index: 15;
+}
+
+.paraffin-top-line {
+  position: absolute;
+  left: 1170px;
+  top: 20px;
+  width: 4px;
+  height: 35px;
+  background-color: #ff0000;
   z-index: 15;
 }
 
@@ -376,7 +416,7 @@ body {
 
 .measurement-value {
   font-size: 14px;
-  font-weight: normal;
+  font-weight: bold;
   color: #333;
   line-height: 1;
 }
@@ -385,6 +425,7 @@ body {
   font-size: 14px;
   color: #333;
   margin-left: 3px;
+  font-weight: bold
 }
 
 .trap-label {

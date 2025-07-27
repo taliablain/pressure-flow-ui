@@ -1,6 +1,6 @@
 # Oil Separation Refinery Interface
 
-A real-time industrial control interface for monitoring an oil distillation refinery system. Built with React, this application displays dynamic temperature and pressure readings for different petroleum products with realistic fluctuation patterns.
+Control interface for monitoring an oil refinery system. Built with React, this application displays dynamic temperature, pressure & flow readings for different petroleum products with realistic fluctuation patterns.
 
 ## Features
 
