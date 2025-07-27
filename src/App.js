@@ -867,6 +867,7 @@ return (
       ))}
 
       {/* Simple red line between kerosene and paraffin circles */}
+      <div className="paraffin-cracker-connection"></div>
       <div className="kerosene-paraffin-connection"></div>
       <div className="kerosene-diesel-connection"></div>
       <div className="diesel-petrol-connection"></div>

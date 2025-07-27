@@ -117,6 +117,16 @@ body {
   top: auto;
 }
 
+.paraffin-cracker-connection {
+  position: absolute;
+  left: 1529px; /* Right edge of paraffin */
+  top: 240px; /* Same height as other lines */
+  width: 298px; /* Distance between them (1600 - 1440) */
+  height: 4px;
+  background-color: #ff0000;
+  z-index: 15;
+}
+
 /* Simple red line between kerosene and paraffin */
 .kerosene-paraffin-connection {
   position: absolute;
@@ -232,9 +242,9 @@ body {
 .cracker-column {
   grid-column: 5;
   grid-row: 1 / span 3;
-  margin-right: 130px;
-  margin-left: -30px;
-  position: relative;
+  position: absolute;
+  left: 0px; /* Fixed distance from paraffin (1350 + 90 + 110 = 1550px) */
+  top: 0px; 
 }
 
 .simple-cylinder {
