@@ -772,137 +772,139 @@ useEffect(() => {
   const products = ["PETROL", "DIESEL", "KEROSENE", "PARAFFIN"];
 
 return (
- <div className="control-interface">
-  {/* Header */}
-  <div className="header">
-    <div className="header-left">
-      {/* You can remove the logo here or keep something else */}
-    </div>
+  <div className="control-interface">
+    {/* Header */}
+    <div className="header">
+      <div className="header-left">
+        {/* You can remove the logo here or keep something else */}
+      </div>
 
-    <div className="header-center">
-      <img src={smallLogo} alt="Logo" className="logo-image" />
-      <h1>OIL SEPARATION REFINERY</h1>
-      <img src={smallLogo} alt="Right Logo" className="logo-image" />
-    </div>
+      <div className="header-center">
+        <img src={smallLogo} alt="Logo" className="logo-image" />
+        <h1>OIL SEPARATION REFINERY</h1>
+        <img src={smallLogo} alt="Right Logo" className="logo-image" />
+      </div>
 
-    <div className="header-right">
-      <div className="datetime">{formatDateTime(currentTime)}</div>
+      <div className="header-right">
+        <div className="datetime">{formatDateTime(currentTime)}</div>
+      </div>
     </div>
-  </div>
 
     {/* Main Distillation Layout */}
     <div className="distillation-container">
-      {products.map((product, index) => (
-        <div key={product} className="product-column">
-          <div className="product-label">{product}</div>
-          <div className={
-            product === "PETROL" ? "petrol-circle" :
-            product === "DIESEL" ? "diesel-circle" :
-            product === "KEROSENE" ? "kerosene-circle" :
-            product === "PARAFFIN" ? "paraffin-circle" :
-            "product-circle"
-          }>
-            <div className="measurement-boxes">
-              <div className="measurement-box temperature">
-                <span className="measurement-value">
-                  {product === "PARAFFIN"
-                    ? paraffinTemp.toFixed(1)
-                    : product === "KEROSENE"
-                      ? keroseneTemp.toFixed(1)
-                      : product === "DIESEL"
-                        ? dieselTemp.toFixed(1)
-                        : product === "PETROL"
-                          ? petrolTemp.toFixed(1)
-                          : "25.0"}
-                </span>
-                <span className="measurement-unit">°C</span>
-              </div>
+      <div className="fixed-layout-wrapper">
+        {products.map((product, index) => (
+          <div key={product} className="product-column">
+            <div className="product-label">{product}</div>
+            <div className={
+              product === "PETROL" ? "petrol-circle" :
+              product === "DIESEL" ? "diesel-circle" :
+              product === "KEROSENE" ? "kerosene-circle" :
+              product === "PARAFFIN" ? "paraffin-circle" :
+              "product-circle"
+            }>
+              <div className="measurement-boxes">
+                <div className="measurement-box temperature">
+                  <span className="measurement-value">
+                    {product === "PARAFFIN"
+                      ? paraffinTemp.toFixed(1)
+                      : product === "KEROSENE"
+                        ? keroseneTemp.toFixed(1)
+                        : product === "DIESEL"
+                          ? dieselTemp.toFixed(1)
+                          : product === "PETROL"
+                            ? petrolTemp.toFixed(1)
+                            : "25.0"}
+                  </span>
+                  <span className="measurement-unit">°C</span>
+                </div>
 
-              <div className="measurement-box pressure">
-                <span className="measurement-value">
-                  {product === "PARAFFIN"
-                    ? paraffinPressure.toFixed(1)
-                    : product === "KEROSENE"
-                      ? kerosenePressure.toFixed(1)
-                      : product === "DIESEL"
-                        ? dieselPressure.toFixed(1)
-                        : product === "PETROL"
-                          ? petrolPressure.toFixed(1)
-                          : "1.2"}
-                </span>
-                <span className="measurement-unit">bar</span>
-              </div>
+                <div className="measurement-box pressure">
+                  <span className="measurement-value">
+                    {product === "PARAFFIN"
+                      ? paraffinPressure.toFixed(1)
+                      : product === "KEROSENE"
+                        ? kerosenePressure.toFixed(1)
+                        : product === "DIESEL"
+                          ? dieselPressure.toFixed(1)
+                          : product === "PETROL"
+                            ? petrolPressure.toFixed(1)
+                            : "1.2"}
+                  </span>
+                  <span className="measurement-unit">bar</span>
+                </div>
 
-              <div
-                className={
-                  product === "PETROL"
-                    ? "measurement-box flow-rate petrol-flow-rate-up"
-                    : "measurement-box flow-rate"
-                }
-              >
-                <span className="measurement-value">
-                  {product === "PARAFFIN"
-                    ? paraffinFlowRate.toFixed(1)
-                    : product === "KEROSENE"
-                    ? keroseneFlowRate.toFixed(1)
-                    : product === "DIESEL"
-                    ? dieselFlowRate.toFixed(1)
-                    : product === "PETROL"
-                    ? petrolFlowRate.toFixed(1)
-                    : "0.0"}
-                </span>
-                <span className="measurement-unit">%</span>
+                <div
+                  className={
+                    product === "PETROL"
+                      ? "measurement-box flow-rate petrol-flow-rate-up"
+                      : "measurement-box flow-rate"
+                  }
+                >
+                  <span className="measurement-value">
+                    {product === "PARAFFIN"
+                      ? paraffinFlowRate.toFixed(1)
+                      : product === "KEROSENE"
+                      ? keroseneFlowRate.toFixed(1)
+                      : product === "DIESEL"
+                      ? dieselFlowRate.toFixed(1)
+                      : product === "PETROL"
+                      ? petrolFlowRate.toFixed(1)
+                      : "0.0"}
+                  </span>
+                  <span className="measurement-unit">%</span>
+                </div>
               </div>
             </div>
-          </div>
-          
-          <div className="connection-line">
-            <div className="arrow-down"></div>
-          </div>
+            
+            <div className="connection-line">
+              <div className="arrow-down"></div>
+            </div>
 
-          <div className="collection-trap">
-            <div className="trap-label">PRODUCT BUFFER STORAGE TANK</div>
-          </div>
-        </div>
-      ))}
-
-      {/* Simple red line between kerosene and paraffin circles */}
-      <div className="paraffin-cracker-connection"></div>
-      <div className="kerosene-paraffin-connection"></div>
-      <div className="kerosene-diesel-connection"></div>
-      <div className="diesel-petrol-connection"></div>
-
-      {/* Cracker cylinder */}
-      <div className="product-column cracker-column">
-        <div className="product-label">CRACKER</div>
-        <div className="simple-cylinder">
-          <div className="cylinder-top-cap"></div>
-          <div className="cylinder-main-body">
-            <div className="measurement-boxes">
-              <div className="measurement-box temperature">
-                <span className="measurement-value">
-                  {crackerTemp.toFixed(1)}
-                </span>
-                <span className="measurement-unit">°C</span>
-              </div>
-              <div className="measurement-box pressure">
-                <span className="measurement-value">
-                  {crackerPressure.toFixed(1)}
-                </span>
-                <span className="measurement-unit">bar</span>
-              </div>
+            <div className="collection-trap">
+              <div className="trap-label">PRODUCT BUFFER STORAGE TANK</div>
             </div>
           </div>
-          <div className="cylinder-bottom-cap"></div>
-          {/* Cracker Entry Line */}
-          <div className="cracker-exit-line"></div>
-          {/* Vertical line with arrow */}
-          <div className="cracker-vertical-line">
-            <div className="arrow-down"></div>
+        ))}
+
+        {/* Cracker cylinder - separate from products array */}
+        <div className="product-column cracker-column">
+          <div className="product-label">CRACKER</div>
+          <div className="simple-cylinder">
+            <div className="cylinder-top-cap"></div>
+            <div className="cylinder-main-body">
+              <div className="measurement-boxes">
+                <div className="measurement-box temperature">
+                  <span className="measurement-value">
+                    {crackerTemp.toFixed(1)}
+                  </span>
+                  <span className="measurement-unit">°C</span>
+                </div>
+                <div className="measurement-box pressure">
+                  <span className="measurement-value">
+                    {crackerPressure.toFixed(1)}
+                  </span>
+                  <span className="measurement-unit">bar</span>
+                </div>
+              </div>
+            </div>
+            <div className="cylinder-bottom-cap"></div>
+            {/* Cracker Entry Line */}
+            <div className="cracker-exit-line"></div>
+            {/* Vertical line with arrow */}
+            <div className="cracker-vertical-line">
+              <div className="arrow-down"></div>
+            </div>
+            {/* Pyrolysis oil input label */}
+            <div className="pyrolysis-label">PYROLYSIS OIL INPUT</div>
           </div>
-          {/* Pyrolysis oil input label */}
-          <div className="pyrolysis-label">PYROLYSIS OIL INPUT</div>
         </div>
+
+        {/* Connection lines within the fixed wrapper */}
+        <div className="paraffin-cracker-connection"></div>
+        <div className="kerosene-paraffin-connection"></div>
+        <div className="kerosene-diesel-connection"></div>
+        <div className="diesel-petrol-connection"></div>
       </div>
     </div>
 

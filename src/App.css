@@ -63,19 +63,25 @@ body {
   font-family: "Courier New", monospace;
 }
 
-/* Main Distillation Layout */
+/* Main Distillation Layout - Fixed Container */
 .distillation-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto;
-  gap: 80px;
-  padding: 80px 40px;
   flex: 1;
   background-color: #f5f5f5;
-  justify-items: center;
-  align-items: start;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 600px;
+  overflow: hidden;
+}
+
+/* Fixed layout wrapper that scales as one unit */
+.fixed-layout-wrapper {
+  position: relative;
+  width: 1600px;
+  height: 500px;
+  transform-origin: center center;
+  transition: transform 0.3s ease;
 }
 
 .product-column {
@@ -85,54 +91,53 @@ body {
   align-items: center;
 }
 
-/* Fixed positioning for each product */
+/* Fixed positioning for each product within the wrapper */
 .product-column:nth-child(1) {
   /* PETROL */
-  left: 100px;
-  top: 300px;
+  left: 0px;
+  top: 200px;
 }
 
 .product-column:nth-child(2) {
   /* DIESEL */
-  left: 750px;
-  top: 100px;
+  left: 500px;
+  top: 0px;
 }
 
 .product-column:nth-child(3) {
   /* KEROSENE */
-  left: 1050px;
-  top: 100px;
+  left: 800px;
+  top: 0px;
 }
 
 .product-column:nth-child(4) {
   /* PARAFFIN */
-  left: 1350px;
-  top: 100px;
+  left: 1100px;
+  top: 0px;
 }
 
 .product-column:nth-child(5) {
-  /* CRACKER - Back to grid positioning */
-  position: relative;
-  left: auto;
-  top: auto;
+  /* CRACKER - Position relative to paraffin */
+  left: 1380px;
+  top: 0px;
 }
 
+/* Connection lines with fixed positioning within wrapper */
 .paraffin-cracker-connection {
   position: absolute;
-  left: 1529px; /* Right edge of paraffin */
-  top: 240px; /* Same height as other lines */
-  width: 298px; /* Distance between them (1600 - 1440) */
+  left: 1280px;
+  top: 140px;
+  width: 100px;
   height: 4px;
   background-color: #ff0000;
   z-index: 15;
 }
 
-/* Simple red line between kerosene and paraffin */
 .kerosene-paraffin-connection {
   position: absolute;
-  left: 1230px; /* Start from right edge of kerosene circle (1050 + 90) */
-  top: 240px; /* Moved down from center of circles */
-  width: 120px; /* Exact distance between circle edges (1350 - 1050 - 90 - 90 = 210px) */
+  left: 980px;
+  top: 140px;
+  width: 120px;
   height: 4px;
   background-color: #ff0000;
   z-index: 15;
@@ -140,9 +145,9 @@ body {
 
 .kerosene-diesel-connection {
   position: absolute;
-  left: 930px; /* Start from right edge of kerosene circle (1050 + 90) */
-  top: 240px; /* Moved down from center of circles */
-  width: 120px; /* Exact distance between circle edges (1350 - 1050 - 90 - 90 = 210px) */
+  left: 680px;
+  top: 140px;
+  width: 120px;
   height: 4px;
   background-color: #ff0000;
   z-index: 15;
@@ -150,12 +155,12 @@ body {
 
 .diesel-petrol-connection {
   position: absolute;
-  left: 269px; /* Start from left edge of diesel circle */
-  top: 400px; /* Start from bottom area of diesel circle */
-  width: 505px; /* Long enough to reach petrol */
+  left: 162px;
+  top: 287px;
+  width: 363px;
   height: 4px;
   background-color: #ff0000;
-  transform: rotate(-17deg); /* Angle to reach petrol circle */
+  transform: rotate(-17deg);
   transform-origin: left center;
   z-index: 15;
 }
@@ -240,11 +245,7 @@ body {
 
 /* Cracker cylinder styling */
 .cracker-column {
-  grid-column: 5;
-  grid-row: 1 / span 3;
-  position: absolute;
-  left: 0px; /* Fixed distance from paraffin (1350 + 90 + 110 = 1550px) */
-  top: 0px; 
+  /* Positioned within fixed wrapper */
 }
 
 .simple-cylinder {
@@ -471,61 +472,28 @@ body {
   width: auto;
 }
 
-/* Responsive Design */
+/* Responsive Design - Scale the entire wrapper */
+@media (max-width: 1600px) {
+  .fixed-layout-wrapper {
+    transform: scale(0.9);
+  }
+}
+
 @media (max-width: 1400px) {
-  .product-column:nth-child(1) { left: 80px; top: 250px; }
-  .product-column:nth-child(2) { left: 600px; top: 80px; }
-  .product-column:nth-child(3) { left: 850px; top: 80px; }
-  .product-column:nth-child(4) { left: 1100px; top: 80px; }
-  
-  .kerosene-paraffin-connection { 
-    left: 940px; 
-    width: 160px; 
-    top: 200px; 
+  .fixed-layout-wrapper {
+    transform: scale(0.8);
   }
 }
 
 @media (max-width: 1200px) {
-  .product-circle,
-  .petrol-circle,
-  .diesel-circle,
-  .kerosene-circle,
-  .paraffin-circle {
-    width: 140px;
-    height: 140px;
+  .fixed-layout-wrapper {
+    transform: scale(0.7);
   }
+}
 
-  .cylinder-top-cap,
-  .cylinder-bottom-cap {
-    width: 120px;
-    height: 24px;
-  }
-
-  .cylinder-main-body {
-    width: 120px;
-    height: 180px;
-    margin-top: -12px;
-    margin-bottom: -12px;
-  }
-
-  .product-label {
-    font-size: 18px;
-  }
-
-  .collection-trap {
-    width: 80px;
-    height: 60px;
-  }
-
-  .product-column:nth-child(1) { left: 60px; top: 220px; }
-  .product-column:nth-child(2) { left: 550px; top: 60px; }
-  .product-column:nth-child(3) { left: 750px; top: 60px; }
-  .product-column:nth-child(4) { left: 950px; top: 60px; }
-  
-  .kerosene-paraffin-connection { 
-    left: 820px; 
-    width: 130px; 
-    top: 180px; 
+@media (max-width: 1000px) {
+  .fixed-layout-wrapper {
+    transform: scale(0.6);
   }
 }
 
@@ -533,6 +501,13 @@ body {
   .distillation-container {
     display: block;
     padding: 20px;
+  }
+
+  .fixed-layout-wrapper {
+    position: relative;
+    transform: none;
+    width: 100%;
+    height: auto;
   }
 
   .product-column {
@@ -553,6 +528,19 @@ body {
     height: 120px;
   }
 
+  .cylinder-top-cap,
+  .cylinder-bottom-cap {
+    width: 120px;
+    height: 24px;
+  }
+
+  .cylinder-main-body {
+    width: 120px;
+    height: 180px;
+    margin-top: -12px;
+    margin-bottom: -12px;
+  }
+
   .product-label {
     font-size: 16px;
   }
@@ -566,7 +554,10 @@ body {
     height: 80px;
   }
 
-  .kerosene-paraffin-connection {
+  .paraffin-cracker-connection,
+  .kerosene-paraffin-connection,
+  .kerosene-diesel-connection,
+  .diesel-petrol-connection {
     display: none;
   }
 
