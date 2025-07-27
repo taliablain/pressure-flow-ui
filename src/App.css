@@ -70,7 +70,8 @@ body {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 80px;
   min-height: 600px;
   overflow: hidden;
 }
@@ -156,11 +157,11 @@ body {
 .diesel-petrol-connection {
   position: absolute;
   left: 162px;
-  top: 287px;
-  width: 363px;
+  top: 288px;
+  width: 364px;
   height: 4px;
   background-color: #ff0000;
-  transform: rotate(-17deg);
+  transform: rotate(-18deg);
   transform-origin: left center;
   z-index: 15;
 }
@@ -173,6 +174,13 @@ body {
   letter-spacing: 2px;
   text-align: center;
 }
+
+.product-column:nth-child(2) .product-label,
+.product-column:nth-child(3) .product-label,
+.product-column:nth-child(4) .product-label {
+  transform: translateY(-27px);
+}
+
 
 .product-circle {
   width: 180px;
@@ -302,12 +310,14 @@ body {
 
 .cracker-exit-line::after {
   content: "";
-  position: absolute;
-  top: -201px;
-  right: -200px;
-  width: 200px;
+  position: fixed;
+  top: 171px;
+  right: 0;
+  width: calc(100vw - 50% - 820px);
+  min-width: 100px;
   height: 2px;
   background-color: #333;
+  z-index: 4;
 }
 
 .cracker-vertical-line {
@@ -327,7 +337,7 @@ body {
   position: absolute;
   font-size: 14px;
   top: -70px;
-  right: -160px;
+  right: -210px;
 }
 
 .measurement-boxes {
