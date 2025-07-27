@@ -503,6 +503,20 @@ body {
   padding: 0;
 }
 
+.arrow-left {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 12px solid #333;
+  background: none;
+  padding: 0;
+}
+
 .collection-trap {
   width: 100px;
   height: 100px;
